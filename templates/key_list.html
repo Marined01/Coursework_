@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Key list</title>
+    <link rel="stylesheet">
+</head>
+<body>
+    <h1>Список ключів</h1>
+<table border="1">
+    <tr>
+        <th>Аудиторія</th>
+        <th>Статус</th>
+        <th>Хто тримає</th>
+        <th>Час взяття</th>
+        <th>Час повернення</th>
+        <th>Взяти/покласти</th>
+    </tr>
+    {% for key in keys %}
+    <tr>
+        <td>{{ key.auditory }}</td>
+        <td>{{ key.status }}</td>
+        <td>{{ key.holder }}</td>
+        <td>{{ key.take_key_time }}</td>
+        <td>{{ key.put_key_time }}</td>
+   <td>
+        {% if key.status == 'free' %}
+            <form method="post" action="{% url 'take_key' key.id %}">
+                {% csrf_token %}
+                <button type="submit">Взяти</button>
+            </form>
+        {% else %}
+            <form method="post" action="{% url 'put_key' key.id %}">
+                {% csrf_token %}
+                <button type="submit">Повернути</button>
+            </form>
+            <a href="{% url 'transfer_key' %}" class="btn">Передати</a>
+        {% endif %}
+    </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

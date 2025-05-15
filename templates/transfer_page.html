@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Передача ключа</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'free_keys' %}">Список вільних аудиторій</a></li>
+            <li><a href="{% url 'profile' %}">Профіль</a></li>
+            <li><a href="{% url 'logout' %}">Вихід</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="center">
+    <h1>Предати</h1>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <div class="txt_field">
+            <input type="text" required name="name">
+            <span></span>
+            <label>Ім'я користувача</label>
+        </div>
+
+        <div class="txt_field">
+            <input type="text" required name="surname">
+            <span></span>
+            <label>Прізвище користувача</label>
+        </div>
+
+        <input type="submit" value="Передати">
+        <a href="{% url 'home' %}" class="btn" style="margin-top: 1rem;">Повернутися назад</a>
+    </form>
+</div>
+<footer>
+    <p>&copy; 2025 Coursework.</p>
+</footer>
+</body>
+</html>

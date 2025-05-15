@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <link rel="stylesheet" href="{% static 'style_home.css' %}">
+
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'free_keys' %}">Список вільних аудиторій</a></li>
+            <li><a href="{% url 'profile' %}">Профіль</a></li>
+            <li><a href="{% url 'logout' %}">Вихід</a></li>
+            {% if user.is_staff %}
+                <li><a href="{% url 'manage_requests' %}">Адм. запити</a></li>
+            {% endif %}
+
+        </ul>
+    </nav>
+</header>
+
+<h1>Ваші ключі:</h1>
+
+
+{% if users_keys %}
+    {% for key in users_keys %}
+        <div class="container">
+            <div class="card">
+                <p><strong>Аудиторія:</strong> {{ key.auditory }}</p>
+{#                <p><strong>Статус:</strong> {{ key.get_status_display }}</p>#}
+                <p><strong>Час взяття:</strong> {{ key.take_key_time }}</p>
+                <a method="post" href="{% url 'put_key' key.id %}" class="btn">Покласти ключ</a>
+                <a method="post" href="{% url 'transfer_key' key.id %}" class="btn">Передати ключ</a>
+
+            </div>
+        </div>
+
+    {% endfor %}
+{% else %}
+    <p>У вас немає ключів.</p>
+{% endif %}
+
+<footer>
+    <p>&copy; 2025 Courework.</p>
+</footer>
+</body>
+</html>

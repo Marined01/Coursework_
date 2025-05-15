@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style_home.css' %}">
+    <title>Free keys</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Назад</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Вільні аудиторії</h1>
+    {% if free_keys %}
+        {% for key in free_keys %}
+
+            <div class="container">
+                <div class="card">
+                    <p><strong>Аудиторія:</strong> {{ key.auditory }}</p>
+                    <a method="post" href="{% url 'take_key' key.id %}" class="btn">Взяти ключ</a>
+
+                </div>
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Наразі немає вільних ключів.</p>
+    {% endif %}
+<footer>
+    <p>&copy; 2025 Courework.</p>
+</footer>
+</body>
+</html>

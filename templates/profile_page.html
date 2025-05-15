@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'style_home.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Головна</a></li>
+                <li><a href="{% url 'logout' %}">Вихід</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+
+        <div class="center">
+    <h1>Профіль користувача</h1>
+
+    <form method="POST">
+
+        <div class="profile-info">
+        <p><strong>Ім’я:</strong> {{ user.name }}</p>
+        <p><strong>Прізвище:</strong> {{ user.surname }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+{#        <p><strong>Дата створення:</strong> {{ user.date_joined }}</p>#}
+    </div>
+        <a href="{% url 'profile_edit' %}" class="btn">Редагувати профіль</a>
+        <a href="{% url 'home' %}" class="btn" style="margin-top: 1rem;">Повернутися назад</a>
+    </form>
+
+</div>
+</main>
+    <footer>
+        <p>&copy; 2025 UniKey</p>
+    </footer>
+</body>
+</html>
