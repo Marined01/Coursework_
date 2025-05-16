@@ -108,10 +108,18 @@ h1:hover::after {
     font-weight: 500;
     border: none;
     cursor: pointer;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center; 
+    box-sizing: border-box;
 }
 
 .btn:hover {
     background-color: #5B7BC8;
+}
+.btn + .btn {
+    margin-top: 1rem;
 }
 
 footer {
